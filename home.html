@@ -1,93 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Personal Exercise Trainer</title>
+  <title></title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Personal Exercise Trainer </h1>
-  <p>Enter the type of exercise you would like to do: </p>
-  <form id="prompt-form">
-    <input type="text" id="prompt-input" />
-    <button type="submit">Generate response</button>
-  </form>
-  <div id="response" class="wrappeer">
-    <img class="logo" src="css/gym1.png">
-    <!--
-    <nav class="navbar">
-        <img class="logo" src="css/gym1.png">
-    </nav>
-    -->
-  </div>
-   
-   <script>
-    // Set the API key
-    const API_KEY = "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";
 
-    // Get a reference to the form and input field
-    const form = document.getElementById("prompt-form");
-    const input = document.getElementById("prompt-input");
-
-    // Add an event listener to the form to handle submissions
-    form.addEventListener("submit", async (event) => {
-      // Prevent the form from reloading the page
-      event.preventDefault();
-
-      // Get the prompt from the input field
-      const prompt = input.value;
-
-      // Make a request to the GPT-3 API
-      const response = await fetch(
-        "https://api.openai.com/v1/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${API_KEY}`,
-          },
-          body: JSON.stringify({
-            model: "text-davinci-003",
-            //model: "chatbot",
-            prompt: prompt,
-            max_tokens: 1000,
-            temperature: 0.2,
-          }),
-        }
-      );
-
-      // Get the response text
-      const responseText = await response.text();
-      
-      // Parse the response as JSON
-      //setTimeout(alert("Hello"), 2000);
-      const responseJSON = JSON.parse(responseText);
-      
-      // Extract the generated text from the response
-      const generatedText = responseJSON.choices[0].text;
-      // Add line breaks to the generated text
-      const formattedText1 = generatedText.replace(/([0-9])\./g, "<br> $1.");
-      const formattedText = formattedText1.replace(/\./g, ".<br>");
-      //const formattedText = generatedText.replace(/\./g, ".\n");
-      
-      console.log(formattedText);
-      document.getElementById("response").innerHTML = `<p>${console.log}</p>`;
-
-      // Update the response element with the formatted text
-      //This code sets the text content of the element with the id "response" to the value of the formattedText 
-      //variable using the textContent property, and then replaces the inner HTML of the same element with a 
-      //paragraph element containing the formattedText variable using the innerHTML property.
-      //The result of this code will depend on the value of the formattedText variable and the initial content of the element with the id "response". If the element is empty, the text content and inner HTML of the element will both be set to the value of the formattedText variable. If the element is not empty, the text content will be replaced with the formattedText variable, but the inner HTML will be replaced with a paragraph element containing the formattedText variable, which will overwrite any other content that was previously inside the element.
-      const responseElement = document.getElementById("response");
-      responseElement.textContent = formattedText;
-      document.getElementById("response").innerHTML = `<p>${formattedText}</p>`;
-      
-    });
-  </script>
  
  
 </body>
 </html>
 
-<!--
- file:///Users/m.wei/Downloads/Coding/python/htest4.html
--->
